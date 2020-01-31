@@ -9,6 +9,16 @@
 			<input type="text" class="input-block-level" id="settings_plugin_telegram_token" data-bind="value: settings.settings.plugins.telegram.token" />
 		</div>
 	</div>
+    <div class="control-group">
+        <label class="control-label">{{ _('Proxy') }}</label>
+        <div class="controls">
+            <input type="text" class="input-block-level" id="settings_plugin_telegram_http_proxy" data-bind="value: settings.settings.plugins.telegram.https_proxy" />
+            <div style="float:left;">
+                <span class="help-block"><small>Example: socks5h://0.0.0.0:0000.<br> Use socks5h:// prefix to proxy dns requests, and socks5:// for regular dns requests.</small></span>
+            </div>
+
+        </div>
+    </div>
 	<div class="control-group">
 		<label class="control-label">{{ _('Test Token') }}</label>
 		<div class="controls">
@@ -20,7 +30,7 @@
 			</span></p>
 		</div>
 	</div>
-	
+
 	<br>
 	<hr>
 
@@ -90,7 +100,7 @@
 				        <span data-bind="visible: newUsr">
 				        	<span class="muted" ><small>(click)</small></span>
 				        </span>
-				        
+
 			        </td>
 			    </tr>
 		    </tbody>
@@ -99,15 +109,15 @@
 			<label class="control-label">{{ _('Refresh Chat List') }}</label>
 			<div class="controls">
 				<div style="float:left;">
-					<button class="btn" data-bind="click: function (){ $root.requestData(true); }" title="Reload list"><i class="icon-refresh"></i>&nbsp;&nbsp;{{ _('Reload') }}</button> &nbsp;&nbsp;&nbsp; 
+					<button class="btn" data-bind="click: function (){ $root.requestData(true); }" title="Reload list"><i class="icon-refresh"></i>&nbsp;&nbsp;{{ _('Reload') }}</button> &nbsp;&nbsp;&nbsp;
 
 				</div>
 				<div class="controls">
 					<label class="checkbox">
-						<input type="checkbox" data-bind="checked: reloadUsr" title="Check to enable auto Refresh" /> <span>Enable auto refresh (20 sec.)</span>	
+						<input type="checkbox" data-bind="checked: reloadUsr" title="Check to enable auto Refresh" /> <span>Enable auto refresh (20 sec.)</span>
 					</label>
 				</div>
-				<div style="float:left;">	
+				<div style="float:left;">
 					<span class="help-block"><small>Press this button or enable auto refresh after you send an initial random message to the bot.<br>
 					Your chat will then appear in the list. Before you're able to edit notifications and available commands for new users, you have to save the settings first!</small></span>
 				</div>
@@ -135,7 +145,7 @@
 			<span class="help-block"><small>Sends a message after layer height changed by this height or this many minutes passed since the last notification. Set to 0 to disable.</small></span>
 		</div>
 	</div>
-	
+
 	<div class="control-group">
 		<label class="control-label">{{ _('Delay for finished prints notification') }}</label>
 		<div class="controls">
@@ -153,28 +163,28 @@
 		<div class="controls">
                 <label id="chkBtn0" class="btn btn-mini" title="Toggle 'Send with image'">
                	<input type="checkbox" style="display:none" data-bind="checked: settings.settings.plugins.telegram.image_not_connected, click: toggleImg('0')"/>
-                <i id="chkImg0" class=""></i> 
+                <i id="chkImg0" class=""></i>
                <span id="chkTxt0"></span></label>
                <span class="help-block"><small>Send image with "Not connected" status message?</small></span>
 		</div>
 	</div>
-	 
+
 	<!--div class="control-group">
 		<label class="control-label">{{ _('"Not connected"-status') }}</label>
 		<div class="controls">
                 <label id="chkGifBtn0" class="btn btn-mini" title="Toggle 'Send with gif'">
                	<input type="checkbox" style="display:none" data-bind="checked: settings.settings.plugins.telegram.gif_not_connected, click: toggleGif('0')"/>
-                <i id="chkGif0" class=""></i> 
+                <i id="chkGif0" class=""></i>
                <span id="chkGifTxt0"></span></label>
                <span class="help-block"><small>Send Gif with "Not connected" status message?</small></span>
 		</div>
 	</div-->
-	 
+
 	<div class="control-group">
 		<label class="control-label">{{ _('Send Emojis') }}</label>
 		<div class="controls">
 			<label class="checkbox">
-				<input type="checkbox" data-bind="checked: settings.settings.plugins.telegram.send_icon" /> 
+				<input type="checkbox" data-bind="checked: settings.settings.plugins.telegram.send_icon" />
 			</label>
 			<span class="help-block"><small>Check to enable emojis in notifications and command dialogs.</small></span>
 		</div>
@@ -184,7 +194,7 @@
 		<label class="control-label">{{ _('Send gif') }}</label>
 		<div class="controls">
 			<label class="checkbox">
-				<input type="checkbox" data-bind="checked: settings.settings.plugins.telegram.send_gif ,click:toggleGifGen()"  /> 
+				<input type="checkbox" data-bind="checked: settings.settings.plugins.telegram.send_gif ,click:toggleGifGen()"  />
 			</label>
 				<span class="help-block"><small>Check to enable sending of gifs. <span class="text-warning">Warning, enabling this feature might affect your prints and make octoprint unresponsive: use at your own risk<span></small></span>
 		</div>
@@ -238,7 +248,7 @@
 	<br>
 	<hr>
 
-	
+
 	<div class="control-group">
 		<label class="control-label"><h4>Messages at...</h4></label>
 		<div class="controls form-inline" style="text-align:center;">
@@ -249,7 +259,7 @@
 				<button title="Click to open information dialog" class="btn btn-info btn-small" data-bind="click: function() {$root.emoInfoDialog.modal('show');}"><i class="icon-info-sign"></i>&nbsp;&nbsp;{{ _('Emojis') }}</button>
 			</label>
 		</div>
-	</div> 
+	</div>
 	<div id="telegram_msg_list"><!-- message settings get listed here --></div>
 	<br>
 	<br>
@@ -287,7 +297,7 @@
 			</label>
 		</div>
 	</div>
-		
+
 </form>
 
 
@@ -302,7 +312,7 @@
                 <div class="controls">
                     <label class="checkbox">
                     	<span id="telegram-acccmd-chkbox"></span>
-                        
+
                     </label>
                 </div>
             </div>
@@ -313,7 +323,7 @@
                     </label>
                 </div>
             </div>
-            
+
         </form>
     </div>
     <div class="modal-footer">
@@ -332,12 +342,12 @@
             <div class="control-group">
             	<label class="control-label" id="tele-edit-control-label"></label>
                 <div class="controls" id="telegram-cmd-chkbox-grp">
-                    
+
                 </div>
             </div>
 
         </form>
-    </div>  
+    </div>
 </div>
 
 
@@ -416,12 +426,12 @@
     	<p>
 	    	<span class="muted"><small>
 	    		Data for internal icon list taken from: <a href="https://github.com/github/gemoji" target="_blank">github/gemoji</a><br>
-	    		These emoji images are taken from Github's <a href="https://github.com/github/gemoji" target="_blank">gemoji project</a>. The icons are copyright of Apple Inc. See the <a href="https://github.com/github/gemoji/blob/master/LICENSE" target="_blank">license</a> for details. 
+	    		These emoji images are taken from Github's <a href="https://github.com/github/gemoji" target="_blank">gemoji project</a>. The icons are copyright of Apple Inc. See the <a href="https://github.com/github/gemoji/blob/master/LICENSE" target="_blank">license</a> for details.
 			</small></span>
     	</p>
-      
+
     </div>
-  
+
 </div>
 
 
@@ -432,7 +442,7 @@
        <nobr><h4><i class="icon-info-sign icon-large" style="color:blue"></i>&nbsp;&nbsp;{{_('Markup') }}</h4></nobr>
     </div>
     <div class="modal-body">
-    	<p>You can use simple markup in messages. Markup for messages is activated by the markup options besides the message text fields. You can choose using HTML markup or the markdown variant. The list below shows the different markups you are able to use.</p> 
+    	<p>You can use simple markup in messages. Markup for messages is activated by the markup options besides the message text fields. You can choose using HTML markup or the markdown variant. The list below shows the different markups you are able to use.</p>
 			<table class="table table-condensed table-striped" style="table-layout: auto">
 			    <thead>
 				    <tr>
@@ -473,7 +483,7 @@
 	    	<span class="muted"><small>
 	    		See <a href="https://core.telegram.org/bots/api#formatting-options" target="_blank">Telegram Bot API Documentation</a> for more information.</small></span>
     	</p>
-      
+
     </div>
-  
+
 </div>
